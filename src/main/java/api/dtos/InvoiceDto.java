@@ -1,5 +1,7 @@
 package api.dtos;
 
+import api.entities.Invoice;
+
 public class InvoiceDto {
 
     private int id;
@@ -7,6 +9,11 @@ public class InvoiceDto {
     private String client;
 
     public InvoiceDto() {
+    }
+
+    public InvoiceDto(Invoice invoice) {
+        this.id = invoice.GetId();
+        this.client = invoice.GetClient();
     }
 
     public void SetId(int id) {

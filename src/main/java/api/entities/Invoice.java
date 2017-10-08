@@ -16,6 +16,16 @@ public class Invoice {
     public Invoice() {
     }
 
+    public Invoice(int id, String client) {
+        this.id = id;
+        this.client = client;
+
+    }
+
+    public Invoice(int id) {
+        this.id = id;
+    }
+
     public void SetId(int id) {
         this.id = id;
     }
