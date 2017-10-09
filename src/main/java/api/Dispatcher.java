@@ -16,10 +16,11 @@ public class Dispatcher {
         response.setStatus(HttpStatus.BAD_REQUEST);
     }
 
-    public void doGet(HttpRequest request, HttpResponse response) {
+    public void doPost(HttpRequest request, HttpResponse response) {
         try {
-            if (request.isEqualsPath(InvoiceResource.INVOICE + InvoiceResource.ID)) {
-                response.setBody(invoiceResource.INVOICE + invoiceResource.ID);
+            if (request.isEqualsPath(invoiceResource.INVOICE)) {
+                    invoiceResource.createInvoice(request.getBody());
+                response.setStatus(HttpStatus.CREATED);
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
