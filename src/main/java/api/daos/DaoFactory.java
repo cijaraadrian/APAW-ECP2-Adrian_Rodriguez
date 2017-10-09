@@ -14,5 +14,7 @@ public abstract class DaoFactory {
     }
 
     public abstract InvoiceDao getInvoiceDao();
+    
+    public abstract ShoppingDao getShoppingDao();
 
 }
