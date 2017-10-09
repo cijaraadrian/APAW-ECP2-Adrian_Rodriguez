@@ -30,4 +30,17 @@ public class InvoiceResourceFunctionalTest {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(InvoiceResource.INVOICE).body("-1").build();
         new HttpClientService().httpRequest(request);
     }
+    
+    
+    @Test(expected = HttpException.class)
+    public void testCreateEmptyInvoice() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(InvoiceResource.INVOICE).body("").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testCreateInvoiceWithString() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(InvoiceResource.INVOICE).body("Uno").build();
+        new HttpClientService().httpRequest(request);
+    }
 }
