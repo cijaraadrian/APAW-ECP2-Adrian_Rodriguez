@@ -1,7 +1,7 @@
 package api;
 
-
 import api.resource.InvoiceResource;
+import api.resource.ShoppingResource;
 import api.resource.exceptions.RequestInvalidException;
 import http.HttpRequest;
 import http.HttpResponse;
@@ -11,6 +11,8 @@ public class Dispatcher {
 
     private InvoiceResource invoiceResource = new InvoiceResource();
 
+    private ShoppingResource shoppingResource = new ShoppingResource();
+
     private void responseError(HttpResponse response, Exception e) {
         response.setBody("{\"error\":\"" + e + "\"}");
         response.setStatus(HttpStatus.BAD_REQUEST);
@@ -19,7 +21,13 @@ public class Dispatcher {
     public void doPost(HttpRequest request, HttpResponse response) {
         try {
             if (request.isEqualsPath(invoiceResource.INVOICE)) {
-                    invoiceResource.createInvoice(request.getBody());
+                invoiceResource.createInvoice(request.getBody());
+                response.setStatus(HttpStatus.CREATED);
+            } else if (request.isEqualsPath(ShoppingResource.SHOPPING)) {
+                String invoiceId = request.getBody().split(":")[0];
+                String shoppingId = request.getBody().split(":")[1];
+                System.out.println("1");
+                shoppingResource.createShopping(Integer.valueOf(invoiceId), Integer.valueOf(shoppingId));
                 response.setStatus(HttpStatus.CREATED);
             } else {
                 throw new RequestInvalidException(request.getPath());
