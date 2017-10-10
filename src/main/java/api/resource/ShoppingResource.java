@@ -25,4 +25,12 @@ public class ShoppingResource {
     public List<ShoppingDto> shoppingList() {
         return new ShoppingController().ShoppingList();
     }
+
+    public List<ShoppingDto> shoppingList(int idInvoice) throws  InvoiceIdNotFoundException {
+        if (idInvoice <= 0 ) {
+            throw new InvoiceIdNotFoundException(Integer.toString(idInvoice)); 
+        }else {
+            return new ShoppingController().ShoppingList(idInvoice);
+        }
+    }
 }

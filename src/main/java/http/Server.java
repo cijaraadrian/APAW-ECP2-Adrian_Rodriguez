@@ -11,6 +11,9 @@ public class Server {
         case POST:
             dispatcher.doPost(request, response);
             break;
+        case GET:
+            dispatcher.doGet(request, response);
+            break;
         default:
         }
         return response;
