@@ -41,7 +41,7 @@ public class Dispatcher {
             if (request.isEqualsPath(shoppingResource.SHOPPING)) {
                 response.setBody(shoppingResource.shoppingList(Integer.valueOf(request.getBody())).toString());
             }else if (request.isEqualsPath(invoiceResource.INVOICE + invoiceResource.ID )){
-                response.setBody("Lo he encontrado");
+                response.setBody(invoiceResource.readInvoice(Integer.valueOf(request.paths()[1])).toString());
             }else {
                 throw new RequestInvalidException(request.getPath());
             }
