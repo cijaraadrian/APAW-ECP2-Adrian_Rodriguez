@@ -14,7 +14,8 @@ public class InvoiceResource {
 
     public static final String ID_SHOPPING = ID + "/shoppings";
 
-    public InvoiceDto readInvoice(int invoiceId) throws InvoiceIdNotFoundException {
+    public InvoiceDto readInvoice(int invoiceId) throws InvoiceIdNotFoundException, InvoiceFieldInvalidException {
+        this.validateField(String.valueOf(invoiceId));
         Optional<InvoiceDto> optional = new InvoiceController().readInvoice(invoiceId);
         return optional.orElseThrow(() -> new InvoiceIdNotFoundException(Integer.toString(invoiceId)));
     }
@@ -25,7 +26,7 @@ public class InvoiceResource {
     }
     
     private void validateField(String field) throws InvoiceFieldInvalidException {
-        if (field == null || field.isEmpty() || Integer.parseInt(field) < 0 ) {
+        if (field == null || field.isEmpty() || Integer.parseInt(field) <= 0 ) {
             throw new InvoiceFieldInvalidException(field);
         }
     }

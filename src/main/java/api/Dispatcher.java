@@ -39,9 +39,10 @@ public class Dispatcher {
     public void doGet(HttpRequest request, HttpResponse response) {
         try {
             if (request.isEqualsPath(shoppingResource.SHOPPING)) {
-
                 response.setBody(shoppingResource.shoppingList(Integer.valueOf(request.getBody())).toString());
-            } else {
+            }else if (request.isEqualsPath(invoiceResource.INVOICE + invoiceResource.ID )){
+                response.setBody(invoiceResource.readInvoice(Integer.valueOf(request.paths()[1])).toString());
+            }else {
                 throw new RequestInvalidException(request.getPath());
             }
         } catch (Exception e) {

@@ -43,4 +43,27 @@ public class InvoiceResourceFunctionalTest {
         HttpRequest request = new HttpRequestBuilder().method(HttpMethod.POST).path(InvoiceResource.INVOICE).body("Uno").build();
         new HttpClientService().httpRequest(request);
     }
+    
+    @Test
+    public void testGetInvoiceById() {
+        this.createInvoice();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(InvoiceResource.INVOICE)
+                                                      .path(InvoiceResource.ID).expandPath("1").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testGetInvoiceByIdWithIncorrectId() {
+        this.createInvoice();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(InvoiceResource.INVOICE)
+                                                      .path(InvoiceResource.ID).expandPath("-1").build();
+        new HttpClientService().httpRequest(request);
+    }
+    
+    @Test(expected = HttpException.class)
+    public void testGetInvoiceByIdNotExists() {
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(InvoiceResource.INVOICE)
+                                                      .path(InvoiceResource.ID).expandPath("1").build();
+        new HttpClientService().httpRequest(request);
+    }
 }
