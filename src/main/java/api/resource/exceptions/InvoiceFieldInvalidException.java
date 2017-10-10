@@ -4,7 +4,7 @@ public class InvoiceFieldInvalidException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DESCRIPTION = "Id del invoice no encontrado";
+    public static final String DESCRIPTION = "Id del invoice no es correcto";
 
     public InvoiceFieldInvalidException(String detail) {
         super(DESCRIPTION + ". " + detail);
