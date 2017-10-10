@@ -8,8 +8,8 @@ public class Server {
     public HttpResponse submit(HttpRequest request) {
         HttpResponse response = new HttpResponse();
         switch (request.getMethod()) {
-        case GET:
-            dispatcher.doGet(request, response);
+        case POST:
+            dispatcher.doPost(request, response);
             break;
         default:
         }
