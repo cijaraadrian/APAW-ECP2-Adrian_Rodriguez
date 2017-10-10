@@ -29,4 +29,14 @@ public class ShoppingController {
         return ShoppingDtoList;
     }
 
+    public List<ShoppingDto> ShoppingList(int IdInvoice) {
+        List<ShoppingDto> ShoppingDtoList = new ArrayList<>();
+        List<Shopping> shopping = DaoFactory.getFactory().getShoppingDao().getListByIdInvoice(IdInvoice);
+       
+        for (Shopping shop : shopping) {
+            ShoppingDtoList.add(new ShoppingDto(shop));
+        }
+        return ShoppingDtoList;
+    }
+
 }

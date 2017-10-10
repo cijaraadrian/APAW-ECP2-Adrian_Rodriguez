@@ -62,7 +62,7 @@ public class Invoice {
     @Override
     public String toString() {
         String formattedDate = new SimpleDateFormat("HH:00 dd-MMM-yyyy ").format(date);
-        return "Theme [id=" + id + ", client=" + client + ", date=" + formattedDate + ", total=" + total + "]";
+        return "Invoice [id=" + id + ", client=" + client + ", date=" + formattedDate + ", total=" + total + "]";
     }
 
 }

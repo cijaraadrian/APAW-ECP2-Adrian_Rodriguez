@@ -26,9 +26,21 @@ public class Dispatcher {
             } else if (request.isEqualsPath(ShoppingResource.SHOPPING)) {
                 String invoiceId = request.getBody().split(":")[0];
                 String shoppingId = request.getBody().split(":")[1];
-                System.out.println("1");
                 shoppingResource.createShopping(Integer.valueOf(invoiceId), Integer.valueOf(shoppingId));
                 response.setStatus(HttpStatus.CREATED);
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
+    }
+
+    public void doGet(HttpRequest request, HttpResponse response) {
+        try {
+            if (request.isEqualsPath(shoppingResource.SHOPPING)) {
+
+                response.setBody(shoppingResource.shoppingList(Integer.valueOf(request.getBody())).toString());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }

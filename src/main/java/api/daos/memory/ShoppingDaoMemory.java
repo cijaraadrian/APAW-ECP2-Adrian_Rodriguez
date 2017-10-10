@@ -38,4 +38,17 @@ public class ShoppingDaoMemory extends GenericDaoMemory<Shopping> implements Sho
 
     }
 
+    @Override
+    public List<Shopping> getListByIdInvoice(int invoiceId) {
+        List<Shopping> shopping = this.findAll();
+        List<Shopping> shoppingReturn = new ArrayList<>();
+        for (Shopping shop : shopping) {
+
+            if (shop.GetInvoice().GetId() == invoiceId) {
+                shoppingReturn.add(shop);
+            }
+        }
+        return shoppingReturn;
+    }
+
 }
