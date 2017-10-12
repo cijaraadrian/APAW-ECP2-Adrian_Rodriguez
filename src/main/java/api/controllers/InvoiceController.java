@@ -31,4 +31,9 @@ public class InvoiceController {
         
     }
 
+    public void PutInvoice(int idInvoice, String clientName) {
+        DaoFactory.getFactory().getInvoiceDao().update(new Invoice(idInvoice,clientName));// TODO Auto-generated method stub
+        
+    }
+
 }

@@ -49,5 +49,18 @@ public class Dispatcher {
             responseError(response, e);
         }
     }
+    public void doPut(HttpRequest request, HttpResponse response) {
+        try {
+            if (request.isEqualsPath(invoiceResource.INVOICE)) {
+                String idInvoice = request.getBody().split(":")[0];
+                String clientName = request.getBody().split(":")[1];
+                invoiceResource.PutInvoice(idInvoice, clientName);
+            }else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
+    }
 
 }
