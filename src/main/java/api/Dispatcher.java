@@ -65,4 +65,18 @@ public class Dispatcher {
         }
     }
 
+    public void doDelete(HttpRequest request, HttpResponse response) {
+        try {
+            if (request.isEqualsPath(invoiceResource.INVOICE + invoiceResource.ID)) {
+                invoiceResource.DeleteResource(Integer.valueOf(request.paths()[1]));
+                
+            } else {
+                throw new RequestInvalidException(request.getPath());
+            }
+        } catch (Exception e) {
+            responseError(response, e);
+        }
+        
+    }
+
 }

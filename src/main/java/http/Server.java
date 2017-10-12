@@ -17,6 +17,9 @@ public class Server {
         case PUT:
             dispatcher.doPut(request, response);
             break;
+        case DELETE:
+            dispatcher.doDelete(request, response);
+            break;
         default:
         }
         return response;

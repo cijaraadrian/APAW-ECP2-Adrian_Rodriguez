@@ -26,14 +26,19 @@ public class InvoiceController {
         return DaoFactory.getFactory().getInvoiceDao().read(invoiceId) != null;
     }
 
-    public void createInvoice2(int id , String client) {
-        DaoFactory.getFactory().getInvoiceDao().create(new Invoice(id,client));
-        
+    public void createInvoice2(int id, String client) {
+        DaoFactory.getFactory().getInvoiceDao().create(new Invoice(id, client));
+
     }
 
     public void PutInvoice(int idInvoice, String clientName) {
-        DaoFactory.getFactory().getInvoiceDao().update(new Invoice(idInvoice,clientName));// TODO Auto-generated method stub
-        
+        DaoFactory.getFactory().getInvoiceDao().update(new Invoice(idInvoice, clientName));// TODO Auto-generated method stub
+
+    }
+
+    public void deleteInvoice(Integer idInvoice) {
+        DaoFactory.getFactory().getInvoiceDao().deleteById(idInvoice);
+
     }
 
 }
