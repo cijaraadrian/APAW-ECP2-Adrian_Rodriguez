@@ -56,7 +56,7 @@ public class Dispatcher {
                 String idInvoice = request.getBody().split(":")[0];
                 String clientName = request.getBody().split(":")[1];
                 invoiceResource.PutInvoice(idInvoice, clientName);
-
+                response.setBody(invoiceResource.readInvoice(Integer.valueOf(idInvoice)).toString());
             } else {
                 throw new RequestInvalidException(request.getPath());
             }
