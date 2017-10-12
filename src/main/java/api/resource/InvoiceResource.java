@@ -45,4 +45,9 @@ public class InvoiceResource {
             this.validateName(clientName);
             new InvoiceController().PutInvoice(Integer.parseInt(idInvoice),clientName);
     }
+
+    public void DeleteResource(Integer idInvoice) throws InvoiceFieldInvalidException {
+        this.validateField(String.valueOf(idInvoice));
+        new InvoiceController().deleteInvoice(idInvoice);
+    }
 }

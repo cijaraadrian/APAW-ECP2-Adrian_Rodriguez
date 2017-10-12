@@ -87,6 +87,22 @@ public class InvoiceResourceFunctionalTest {
        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE).body("1").build();
        new HttpClientService().httpRequest(request);
    }
+   
+   @Test 
+   public void testDeleteInvoiceByIdInvoice() {
+       this.createInvoice();
+       HttpRequest request = new HttpRequestBuilder().method(HttpMethod.DELETE)
+                                   .path(InvoiceResource.INVOICE).path(InvoiceResource.ID).expandPath("1").build();
+       new HttpClientService().httpRequest(request);
+   }
+   
+   @Test(expected = HttpException.class) 
+   public void testDeleteInvoiceByIdInvoiceWorng() {
+       this.createInvoice();
+       HttpRequest request = new HttpRequestBuilder().method(HttpMethod.DELETE)
+                                   .path(InvoiceResource.INVOICE).path(InvoiceResource.ID).expandPath("-2").build();
+       new HttpClientService().httpRequest(request);
+   }
 
     
 }
