@@ -5,6 +5,7 @@ import api.controllers.InvoiceController;
 import api.dtos.InvoiceDto;
 import api.resource.exceptions.InvoiceFieldInvalidException;
 import api.resource.exceptions.InvoiceIdNotFoundException;
+import api.resource.exceptions.InvoiceNameInvalidException;
 
 public class InvoiceResource {
 
@@ -25,9 +26,23 @@ public class InvoiceResource {
         new InvoiceController().createInvoice(Integer.parseInt(idInvoice));
     }
     
+    
+    
     private void validateField(String field) throws InvoiceFieldInvalidException {
         if (field == null || field.isEmpty() || Integer.parseInt(field) <= 0 ) {
             throw new InvoiceFieldInvalidException(field);
         }
+    }
+    
+    private void validateName(String string) throws InvoiceNameInvalidException {
+        if (string == null || string.isEmpty() ) {
+            throw new InvoiceNameInvalidException(string);
+        }
+    }
+
+    public void PutInvoice(String idInvoice, String clientName) throws InvoiceFieldInvalidException, InvoiceNameInvalidException {
+            this.validateField(idInvoice);
+            this.validateName(clientName);
+            new InvoiceController().PutInvoice(Integer.parseInt(idInvoice),clientName);
     }
 }

@@ -66,4 +66,27 @@ public class InvoiceResourceFunctionalTest {
                                                       .path(InvoiceResource.ID).expandPath("1").build();
         new HttpClientService().httpRequest(request);
     }
+    
+   @Test 
+    public void testPutClientNameByIdInvoice() {
+        this.createInvoice();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE).body("1:UPM_CLIENT").build();
+        new HttpClientService().httpRequest(request);
+    }
+   
+   @Test(expected = HttpException.class)
+   public void testPutClientNameByIdInvoiceWrongId() {
+       this.createInvoice();
+       HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE).body("-1:UPM_CLIENT").build();
+       new HttpClientService().httpRequest(request);
+   }
+   
+   @Test(expected = HttpException.class)
+   public void testPutClientNameByIdInvoiceEmptyName() {
+       this.createInvoice();
+       HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE).body("1").build();
+       new HttpClientService().httpRequest(request);
+   }
+
+    
 }
