@@ -62,17 +62,17 @@ public class InvoiceResourceFunctionalTest {
     
     @Test(expected = HttpException.class)
     public void testGetInvoiceByIdNotExists() {
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(InvoiceResource.INVOICE).body("1:UPM_CLIENT").build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.GET).path(InvoiceResource.INVOICE)
+                                                      .path(InvoiceResource.ID).expandPath("1").build();
         new HttpClientService().httpRequest(request);
     }
     
-    @Test
+   @Test 
     public void testPutClientNameByIdInvoice() {
         this.createInvoice();
-        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE)
-                                                      .path(InvoiceResource.ID).expandPath("1").build();
+        HttpRequest request = new HttpRequestBuilder().method(HttpMethod.PUT).path(InvoiceResource.INVOICE).body("1:UPM_CLIENT").build();
         new HttpClientService().httpRequest(request);
-   
     }
+
     
 }
