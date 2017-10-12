@@ -7,7 +7,7 @@ import api.daos.ShoppingDao;
 public class DaoMemoryFactory extends DaoFactory {
 
     private InvoiceDao invoiceDao;
-    
+
     private ShoppingDao shoppingDao;
 
     public InvoiceDao getInvoiceDao() {
